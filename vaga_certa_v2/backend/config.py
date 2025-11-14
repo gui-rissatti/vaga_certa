@@ -3,10 +3,11 @@ Configuração centralizada da aplicação usando Pydantic Settings.
 Garante type safety e validação de variáveis de ambiente.
 """
 from pydantic_settings import BaseSettings
-from pydantic import field_validator
-from typing import Optional
+from pydantic import field_validator, Field
+from typing import Optional, Any
 import os
 import warnings
+import json
 
 
 class Settings(BaseSettings):
@@ -53,21 +54,35 @@ class Settings(BaseSettings):
     request_timeout_seconds: int = 300
     scraping_timeout_seconds: int = 30
     
-    # CORS
-    cors_origins: list[str] = [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://localhost:5174"
-    ]
+    # CORS - Armazenado como string para evitar parse JSON automático
+    cors_origins_str: Optional[str] = Field(default=None, alias="CORS_ORIGINS")
     
-    @field_validator('cors_origins', mode='before')
+    @property
+    def cors_origins(self) -> list[str]:
+        """Retorna lista de origens CORS parseadas da string."""
+        if self.cors_origins_str:
+            # Tenta parsear como JSON primeiro
+            if self.cors_origins_str.strip().startswith('['):
+                try:
+                    return json.loads(self.cors_origins_str)
+                except json.JSONDecodeError:
+                    pass
+            # Se não for JSON, trata como string separada por vírgulas
+            return [origin.strip() for origin in self.cors_origins_str.split(',') if origin.strip()]
+        # Retorna default se não houver valor
+        return [
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "http://localhost:5174"
+        ]
+    
+    @field_validator('cors_origins_str', mode='before')
     @classmethod
-    def parse_cors_origins(cls, v) -> list[str]:
-        """Converte string separada por vírgulas em lista."""
-        if isinstance(v, str):
-            # Remove espaços e divide por vírgula
-            return [origin.strip() for origin in v.split(',') if origin.strip()]
-        return v
+    def parse_cors_origins_str(cls, v: Any) -> Optional[str]:
+        """Valida e retorna string de CORS_ORIGINS."""
+        if v is None or (isinstance(v, str) and not v.strip()):
+            return None
+        return str(v) if isinstance(v, str) else None
     
     class Config:
         env_file = ".env"

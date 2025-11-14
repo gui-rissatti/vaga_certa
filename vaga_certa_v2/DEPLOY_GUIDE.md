@@ -119,6 +119,7 @@ docker-compose build
 **Passo 2:** Inicie os serviços
 
 ```bash
+docker-compose up -d
 ```
 
 **Passo 3:** Verifique saúde
