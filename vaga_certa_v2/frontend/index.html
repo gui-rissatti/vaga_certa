@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vaga Certa - Personalize seu currículo e materiais de candidatura para superar sistemas ATS e conquistar sua próxima oportunidade profissional" />
+    <title>Vaga Certa - Seu Próximo Emprego Começa Aqui</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#0ea5e9',
+              'brand-secondary': '#f59e0b',
+              'brand-success': '#10b981',
+              'base-100': '#0f172a',
+              'base-200': '#1e293b',
+              'base-300': '#334155',
+              'content-100': '#f8fafc',
+              'content-200': '#cbd5e1',
+            },
+          },
+        },
+      }
+    </script>
+</head>
+  <body class="bg-base-100 text-content-200 h-screen overflow-hidden">
+    <div id="root" class="h-full"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
+

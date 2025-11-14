@@ -1,0 +1,51 @@
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Environment
+.env
+.env.*
+
+# Tests
+tests/
+**/tests/
+**/__tests__/
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+
+# Logs
+*.log
+logs/
+
+# Build artifacts (copiar de subpastas)
+**/node_modules/
+**/dist/
+**/build/
+**/__pycache__/
+**/*.pyc
+**/venv/
+**/env/
+
+# Docker
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
