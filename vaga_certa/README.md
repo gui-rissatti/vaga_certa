@@ -151,6 +151,7 @@ vaga_certa_v2/
 ## Documentação Adicional
 
 - **[DEPLOY_GUIDE.md](DEPLOY_GUIDE.md)** - Guia completo de deploy, CI/CD e troubleshooting
+ - **[DEPLOY_GUIDE_DETAILED.md](DEPLOY_GUIDE_DETAILED.md)** - Guia detalhado para equipes DevOps/SRE com passos exatos e scripts
 - [DECISOES_DE_REFATORACAO.md](DECISOES_DE_REFATORACAO.md) - Decisões técnicas da refatoração
 - [tests/README.md](tests/README.md) - Guia de testes automatizados
 - [scripts/README.md](scripts/README.md) - Documentação dos scripts de deploy
