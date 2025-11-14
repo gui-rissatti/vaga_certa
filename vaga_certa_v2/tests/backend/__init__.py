@@ -1,2 +1,0 @@
-"""Testes do backend Python."""
-
